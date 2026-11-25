@@ -1,0 +1,7 @@
+
+!.env.example
+# Added by ggshield
+.DS_Store
+.cache_ggshield
+.env
+.env.*

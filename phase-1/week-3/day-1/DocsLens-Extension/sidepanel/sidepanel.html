@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DocLens</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="../icons/icon32.png" alt="" width="24" height="24" />
+      <div>
+        <h1>DocLens</h1>
+        <p class="tag">Docs QA Copilot</p>
+      </div>
+    </div>
+    <div class="page" id="pageInfo" title="">No page scanned yet</div>
+    <div class="row">
+      <select id="scope" title="Which part of the page to check">
+        <option value="content">Content area only</option>
+        <option value="page">Whole page (incl. nav/footer)</option>
+      </select>
+      <button id="runAll" class="primary">Scan this page</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="health" class="active">Health</button>
+    <button role="tab" data-tab="style">Style</button>
+    <button role="tab" data-tab="bug">Bug report</button>
+    <button role="tab" data-tab="settings">Settings</button>
+  </nav>
+
+  <main>
+    <!-- HEALTH -->
+    <section id="tab-health" class="tab active">
+      <div id="healthEmpty" class="empty">Click <b>Scan this page</b> to check links, images, and SEO.</div>
+      <div id="healthBody" hidden>
+        <div class="stats" id="stats"></div>
+        <div class="filters" id="filters">
+          <button data-f="all" class="chip active">All</button>
+          <button data-f="link" class="chip">Links</button>
+          <button data-f="image" class="chip">Images</button>
+          <button data-f="seo" class="chip">SEO</button>
+          <button data-f="ok" class="chip">Passed</button>
+        </div>
+        <ul class="findings" id="healthList"></ul>
+        <div class="actions">
+          <button id="aiHealth" class="ai">✨ AI summary + Jira/Slack</button>
+          <button id="exportCsv">CSV</button>
+          <button id="exportMd">Full report (.md)</button>
+        </div>
+        <div id="aiHealthOut" class="ai-out" hidden></div>
+      </div>
+    </section>
+
+    <!-- STYLE -->
+    <section id="tab-style" class="tab">
+      <div id="styleEmpty" class="empty">Scan the page to lint it against the docs style guide.</div>
+      <div id="styleBody" hidden>
+        <label class="toggle"><input type="checkbox" id="highlight" checked /> Highlight issues on the page</label>
+        <div class="stats" id="styleStats"></div>
+        <ul class="findings" id="styleList"></ul>
+        <div class="actions">
+          <button id="aiStyle" class="ai">✨ AI style review + rewrites</button>
+        </div>
+        <div id="aiStyleOut" class="ai-out" hidden></div>
+      </div>
+    </section>
+
+    <!-- BUG REPORT -->
+    <section id="tab-bug" class="tab">
+      <label>What went wrong?
+        <textarea id="bugNotes" rows="3" placeholder="e.g. Step 3 screenshot is broken and the 'Webhooks' link goes to a 404"></textarea>
+      </label>
+      <label>Expected result (optional)
+        <input id="bugExpected" placeholder="e.g. The image of the Create Stack modal is shown" />
+      </label>
+      <div class="row wrap">
+        <label class="toggle"><input type="checkbox" id="incConsole" checked /> Console errors</label>
+        <label class="toggle"><input type="checkbox" id="incHealth" checked /> Health findings</label>
+      </div>
+      <div class="actions">
+        <button id="capture">📷 Capture screenshot</button>
+        <button id="aiBug" class="ai">✨ Generate bug report</button>
+      </div>
+      <img id="shot" class="shot" alt="Captured screenshot" hidden />
+      <div id="consoleBox" class="console" hidden></div>
+      <div id="aiBugOut" class="ai-out" hidden></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section id="tab-settings" class="tab">
+      <p class="muted">AI features need an API key. Rule-based checks work without one. Your key is stored only in this browser (chrome.storage.local) and sent only to the provider you pick.</p>
+      <label>Provider
+        <select id="provider">
+          <option value="groq">Groq (free tier)</option>
+          <option value="anthropic">Anthropic Claude</option>
+          <option value="openai">OpenAI</option>
+        </select>
+      </label>
+      <label>API key
+        <input id="apiKey" type="password" autocomplete="off" placeholder="Paste your key" />
+      </label>
+      <label>Model <span class="muted" id="modelHint"></span>
+        <input id="model" placeholder="Leave blank for the default" />
+      </label>
+      <div class="actions">
+        <button id="saveSettings" class="primary">Save</button>
+        <button id="testKey">Test connection</button>
+      </div>
+      <p id="settingsMsg" class="muted"></p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

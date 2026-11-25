@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Webhooks</title>
+</head>
+<body>
+  <nav><a href="/">Home</a> <a href="/docs/">Docs</a></nav>
+  <main>
+    <h1>Set Up Webhooks</h1>
+    <p>This demo page has deliberate problems so you can try DocLens. Open it from a local server (see the README).</p>
+
+    <h3>Before you begin</h3>
+    <p>Please make sure you have an e-mail address and a ContentStack stack. The webhook will be triggered by the system when an entry is published.</p>
+    <p>Our plug-in works out of the box and lets you effortlessly connect your front-end apps, e.g. Next.js, Gatsby, etc.</p>
+
+    <h2>Steps</h2>
+    <ol>
+      <li>Click the Settings icon on the left navigation panel.</li>
+      <li>Click the three dots next to the webhook and select <b>Edit</b> from the drop-down.</li>
+      <li>Select the Enable check box. Each user must update his or her notification settings.</li>
+      <li>Delivery is now 3X faster than before, and failed calls are retried automatically by the queue so that no event is ever lost even if the destination endpoint is temporarily unavailable for a short period of time.</li>
+    </ol>
+
+    <img src="does-not-exist.png" />
+    <img src="../icons/icon128.png" alt="DocLens logo" width="64" />
+
+    <h2>Related links</h2>
+    <ul>
+      <li><a href="../icons/icon48.png">Working link</a></li>
+      <li><a href="missing-page.html">Click here</a> to read about webhook logs.</li>
+      <li><a href="#retry-policy">Retry policy</a> (anchor that does not exist)</li>
+      <li><a href="https://httpbin.org/status/404">External 404</a></li>
+      <li><a href="https://httpbin.org/redirect-to?url=https%3A%2F%2Fexample.com%2F">Redirecting link</a></li>
+      <li><a href="mailto:docs@example.com">Email the docs team</a> (skipped)</li>
+    </ul>
+    <pre><code>// code blocks are skipped: please will e-mail</code></pre>
+  </main>
+  <script>console.error("Demo error: failed to load webhook-logs widget");</script>
+</body>
+</html>
